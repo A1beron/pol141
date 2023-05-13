@@ -3,6 +3,8 @@ package com.sda.provider;
 import com.sda.model.Address;
 import com.sda.model.Role;
 import com.sda.model.User;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,9 +14,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
 public class FileUserProvider implements UserProvider {
 
-    private final String filePath = "src/main/resources/users";
+    private String filePath = "src/main/resources/users";
+
+    public FileUserProvider(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public Set<User> getAllUser() {
