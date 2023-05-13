@@ -7,9 +7,14 @@ import com.sda.provider.UserProvider;
 
 public class UserService implements UserLoginChecker {
 
-    private UserProvider userProvider;
+    private final UserProvider userProvider;
+
     public UserService() {
         userProvider = new FileUserProvider();
+    }
+
+    public UserService(UserProvider userProvider) {
+        this.userProvider = userProvider;
     }
 
     @Override
