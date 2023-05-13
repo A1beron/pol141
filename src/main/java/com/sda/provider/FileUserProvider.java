@@ -18,14 +18,15 @@ public class FileUserProvider implements UserProvider {
 
     @Override
     public Set<User> getAllUser() {
+        Set<User> users = Set.of();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-            bufferedReader.lines()
-                    .map(this::mapToUser);
-
+            users = bufferedReader.lines()
+                    .map(this::mapToUser)
+                    .collect(Collectors.toSet());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return users;
     }
 
     private User mapToUser(String userDataLine) {
